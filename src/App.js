@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "./App.css";
 import Input from "./components/Input/input";
@@ -20,7 +20,7 @@ const App = () => {
 
   const fetchUserRepoHandler = () => {
     axios
-      .get("https://api.github.com/users/mhdnaldi/repos")
+      .get(`https://api.github.com/users/${value}/repos`)
       .then((res) => setRepo(res.data));
   };
 
@@ -29,7 +29,7 @@ const App = () => {
       <h2>Github Repository</h2>
       <form onSubmit={(event) => searchHandler(event)}>
         <Input value={(event) => setValue(event.target.value)} />
-        <Button>Search</Button>
+        <Button>Submit</Button>
       </form>
       {user && (
         <Card

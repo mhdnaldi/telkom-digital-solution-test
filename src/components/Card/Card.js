@@ -4,7 +4,6 @@ import "./Card.css";
 import SubCard from "./SubCard/SubCard";
 
 const card = (props) => {
-  console.log(props.repository);
   let subCard = null;
   if (props.repository) {
     subCard = props.repository.map((el, i) => (
