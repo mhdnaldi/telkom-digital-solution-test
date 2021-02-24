@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "./App.css";
 import Input from "./components/Input/input";
 import Button from "./components/Button/button";
+import Card from "./components/Card/Card";
+import axios from "axios";
 
 const App = () => {
   const [value, setValue] = useState("");
-
-  useEffect(() => {}, []);
+  const [user, setUser] = useState(null);
+  const [repo, setRepo] = useState(null);
 
   const searchHandler = (event) => {
     event.preventDefault();
-    console.log(value);
+    axios
+      .get(`https://api.github.com/users/${value}`)
+      .then((res) => setUser(res.data));
   };
+  console.log(user);
 
   return (
     <div className='container'>
@@ -21,6 +26,7 @@ const App = () => {
         <Input value={(event) => setValue(event.target.value)} />
         <Button>Search</Button>
       </form>
+      {user && <Card image={user.avatar_url} name={user.name} bio={user.bio} />}
     </div>
   );
 };

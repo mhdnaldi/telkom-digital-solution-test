@@ -1,0 +1,24 @@
+.main-card {
+  width: 80%;
+  height: 80px;
+  margin: 20px auto;
+  background-color: #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.main-card img {
+  height: 80%;
+  margin: 10px;
+  border-radius: 4px;
+}
+
+.main-card .info {
+  text-align: left;
+}
+
+.main-card:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
