@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./App.css";
 import Input from "./components/Input/input";
@@ -17,7 +17,12 @@ const App = () => {
       .get(`https://api.github.com/users/${value}`)
       .then((res) => setUser(res.data));
   };
-  console.log(user);
+
+  const fetchUserRepoHandler = () => {
+    axios
+      .get("https://api.github.com/users/mhdnaldi/repos")
+      .then((res) => setRepo(res.data));
+  };
 
   return (
     <div className='container'>
@@ -26,7 +31,15 @@ const App = () => {
         <Input value={(event) => setValue(event.target.value)} />
         <Button>Search</Button>
       </form>
-      {user && <Card image={user.avatar_url} name={user.name} bio={user.bio} />}
+      {user && (
+        <Card
+          image={user.avatar_url}
+          name={user.name}
+          bio={user.bio}
+          click={() => fetchUserRepoHandler()}
+          repository={repo}
+        />
+      )}
     </div>
   );
 };
